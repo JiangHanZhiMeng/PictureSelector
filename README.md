@@ -1,11 +1,5 @@
 # PictureSelector 2.0 
    一款针对android平台下的图片选择器，支持从相册或拍照选择图片或视频、音频，支持动态权限获取、裁剪(单图or多图裁剪)、压缩、主题自定义配置等功能、适配android 6.0+系统的开源图片选择框架。<br>  
-  
-  <br>项目会一直维护(有bug修复完成，一般周末会更新(不好意思，最近比较忙有时间会解决~有问题先提issue))，有bug请描述清楚，并请Issues会第一时间修复，个人QQ 893855882@qq.com  希望用得着的朋友点个star。 <br>
- Android开发交流 群一 619458861 (已满) <br> 
- Android开发交流 群二 679824206 <br> 
-   
-  [我的博客地址](http://blog.csdn.net/luck_mw) 
   
 [![](https://jitpack.io/v/LuckSiege/PictureSelector.svg)](https://jitpack.io/#LuckSiege/PictureSelector)
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg)](https://github.com/LuckSiege)
@@ -14,19 +8,41 @@
 [![Star](https://img.shields.io/github/stars/LuckSiege/PictureSelector.svg)](https://github.com/LuckSiege/PictureSelector)
 
 ## 目录
+-[演示效果](#演示效果)<br>
+-[兼容性测试](#兼容性测试)<br>
 -[功能特点](#功能特点)<br>
 -[集成方式](#集成方式)<br>
--[常见错误](#常见错误)<br>
 -[功能配置](#功能配置)<br>
 -[缓存清除](#缓存清除)<br>
 -[主题配置](#主题配置)<br>
 -[常用功能](#常用功能)<br>
 -[结果回调](#结果回调)<br>
--[更新日志](#更新日志)<br>
 -[混淆配置](#混淆配置)<br>
--[兼容性测试](#兼容性测试)<br>
--[演示效果](#演示效果)<br>
--[打赏](#打赏)<br>
+-[常见错误](#常见错误)<br>
+-[更新日志](#更新日志)<br>
+
+
+## 演示效果
+
+![image](https://github.com/LuckSiege/PictureSelector/blob/master/image/1.jpg)
+![image](https://github.com/LuckSiege/PictureSelector/blob/master/image/2.jpg)
+![image](https://github.com/LuckSiege/PictureSelector/blob/master/image/3.jpg)
+![image](https://github.com/LuckSiege/PictureSelector/blob/master/image/4.jpg)
+![image](https://github.com/LuckSiege/PictureSelector/blob/master/image/white.jpg)
+![image](https://github.com/LuckSiege/PictureSelector/blob/master/image/blue.jpg)
+![image](https://github.com/LuckSiege/PictureSelector/blob/master/image/11.jpg)
+![image](https://github.com/LuckSiege/PictureSelector/blob/master/image/5.jpg)
+![image](https://github.com/LuckSiege/PictureSelector/blob/master/image/6.jpg)
+![image](https://github.com/LuckSiege/PictureSelector/blob/master/image/7.jpg)
+![image](https://github.com/LuckSiege/PictureSelector/blob/master/image/8.jpg)
+![image](https://github.com/LuckSiege/PictureSelector/blob/master/image/audio.jpg)
+![image](https://github.com/LuckSiege/PictureSelector/blob/master/image/9.jpg)
+![image](https://github.com/LuckSiege/PictureSelector/blob/master/image/10.jpg)
+
+## 兼容性测试
+******腾讯优测-深度测试-通过率达到100%******
+
+![image](https://github.com/LuckSiege/PictureSelector/blob/master/image/test.png)
 
 # 功能特点
 
@@ -108,64 +124,6 @@ step 2.
       <artifactId>picture_library</artifactId>
       <version>v2.2.4</version> 
 </dependency>
-
-```
-
-## 常见错误
-```
- 重要：PictureSelector.create()；调用此方法时，在activity中传activity.this，在fragment中请传fragment.this,
- 影响回调到哪个地方的onActivityResult()。
- 
- 问题一：
- rxjava冲突：在app build.gradle下添加
- packagingOptions {
-   exclude 'META-INF/rxjava.properties'
- }  
- 
- 问题二：
- java.lang.NullPointerException: 
- Attempt to invoke virtual method 'android.content.res.XmlResourceParser 
- android.content.pm.ProviderInfo.loadXmlMetaData(android.content.pm.PackageManager, java.lang.String)'
- on a null object reference
- 
- * 注意 从v2.1.3版本中，将不需要配制以下内容
- 
- application下添加如下节点:
- 
- <provider
-      android:name="android.support.v4.content.FileProvider"
-      android:authorities="${applicationId}.provider"
-      android:exported="false"
-      android:grantUriPermissions="true">
-       <meta-data
-         android:name="android.support.FILE_PROVIDER_PATHS"
-         android:resource="@xml/file_paths" />
-</provider>
-
-注意：如已添加其他sdk或项目中已使用过provider节点，
-[请参考我的博客](http://blog.csdn.net/luck_mw/article/details/54970105)的解决方案
-
-问题三：
-经测试在小米部分低端机中，Fragment调用PictureSelector 2.0 拍照有时内存不足会暂时回收activity,
-导致其fragment会重新创建 建议在fragment所依赖的activity加上如下代码:
-if (savedInstanceState == null) {
-      // 添加显示第一个fragment
-      	fragment = new PhotoFragment();
-      		getSupportFragmentManager().beginTransaction().add(R.id.tab_content, fragment,
-                    PictureConfig.FC_TAG).show(fragment)
-                    .commit();
-     } else { 
-      	fragment = (PhotoFragment) getSupportFragmentManager()
-          .findFragmentByTag(PictureConfig.FC_TAG);
-}
-这里就是如果是被回收时，则不重新创建 通过tag取出fragment的实例。
-
-问题四：
-glide冲突
-由于PictureSelector 2.0引入的是最新的glide 4.5.0,所以将项目中老版本的glide删除,并且将报错代码换成如下写法：
-RequestOptions options = new RequestOptions();
-options.placeholder(R.drawable.image);
-Glide.with(context).load(url).apply(options).into(imageView);
 
 ```
 
@@ -298,6 +256,16 @@ Glide.with(context).load(url).apply(options).into(imageView);
 ```
 ******预览图片******       
 ```
+    private List<LocalMedia> selectList;
+    
+    imageList = new ArrayList<>();
+    for (AVObject item : list) {
+	String imgUrl = item.getString("imgUrl");
+	LocalMedia localMedia = new LocalMedia();
+	localMedia.setPath(imgUrl);
+	selectList.add(localMedia);
+    }
+    
 // 预览图片 可自定长按保存路径
 *注意 .themeStyle(themeId)；不可少，否则闪退...
 
@@ -333,7 +301,111 @@ PictureSelector.create(MainActivity.this).externalPictureVideo(video_path);
     }
     
 ```
+## 混淆配置 
+```
+#PictureSelector 2.0
+-keep class com.luck.picture.lib.** { *; }
 
+-dontwarn com.yalantis.ucrop**
+-keep class com.yalantis.ucrop** { *; }
+-keep interface com.yalantis.ucrop** { *; }
+   
+ #rxjava
+-dontwarn sun.misc.**
+-keepclassmembers class rx.internal.util.unsafe.*ArrayQueue*Field* {
+ long producerIndex;
+ long consumerIndex;
+}
+-keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueProducerNodeRef {
+ rx.internal.util.atomic.LinkedQueueNode producerNode;
+}
+-keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueConsumerNodeRef {
+ rx.internal.util.atomic.LinkedQueueNode consumerNode;
+}
+
+#rxandroid
+-dontwarn sun.misc.**
+-keepclassmembers class rx.internal.util.unsafe.*ArrayQueue*Field* {
+   long producerIndex;
+   long consumerIndex;
+}
+-keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueProducerNodeRef {
+    rx.internal.util.atomic.LinkedQueueNode producerNode;
+}
+-keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueConsumerNodeRef {
+    rx.internal.util.atomic.LinkedQueueNode consumerNode;
+}
+
+#glide
+-keep public class * implements com.bumptech.glide.module.GlideModule
+-keep public class * extends com.bumptech.glide.AppGlideModule
+-keep public enum com.bumptech.glide.load.resource.bitmap.ImageHeaderParser$** {
+  **[] $VALUES;
+  public *;
+}
+
+# for DexGuard only
+-keepresourcexmlelements manifest/application/meta-data@value=GlideModule
+
+```
+
+## 常见错误
+```
+ 重要：PictureSelector.create()；调用此方法时，在activity中传activity.this，在fragment中请传fragment.this,
+ 影响回调到哪个地方的onActivityResult()。
+ 
+ 问题一：
+ rxjava冲突：在app build.gradle下添加
+ packagingOptions {
+   exclude 'META-INF/rxjava.properties'
+ }  
+ 
+ 问题二：
+ java.lang.NullPointerException: 
+ Attempt to invoke virtual method 'android.content.res.XmlResourceParser 
+ android.content.pm.ProviderInfo.loadXmlMetaData(android.content.pm.PackageManager, java.lang.String)'
+ on a null object reference
+ 
+ * 注意 从v2.1.3版本中，将不需要配制以下内容
+ 
+ application下添加如下节点:
+ 
+ <provider
+      android:name="android.support.v4.content.FileProvider"
+      android:authorities="${applicationId}.provider"
+      android:exported="false"
+      android:grantUriPermissions="true">
+       <meta-data
+         android:name="android.support.FILE_PROVIDER_PATHS"
+         android:resource="@xml/file_paths" />
+</provider>
+
+注意：如已添加其他sdk或项目中已使用过provider节点，
+[请参考我的博客](http://blog.csdn.net/luck_mw/article/details/54970105)的解决方案
+
+问题三：
+经测试在小米部分低端机中，Fragment调用PictureSelector 2.0 拍照有时内存不足会暂时回收activity,
+导致其fragment会重新创建 建议在fragment所依赖的activity加上如下代码:
+if (savedInstanceState == null) {
+      // 添加显示第一个fragment
+      	fragment = new PhotoFragment();
+      		getSupportFragmentManager().beginTransaction().add(R.id.tab_content, fragment,
+                    PictureConfig.FC_TAG).show(fragment)
+                    .commit();
+     } else { 
+      	fragment = (PhotoFragment) getSupportFragmentManager()
+          .findFragmentByTag(PictureConfig.FC_TAG);
+}
+这里就是如果是被回收时，则不重新创建 通过tag取出fragment的实例。
+
+问题四：
+glide冲突
+由于PictureSelector 2.0引入的是最新的glide 4.5.0,所以将项目中老版本的glide删除,并且将报错代码换成如下写法：
+RequestOptions options = new RequestOptions();
+options.placeholder(R.drawable.image);
+Glide.with(context).load(url).apply(options).into(imageView);
+
+```
 
 ## 更新日志
 
@@ -421,78 +493,3 @@ PictureSelector.create(MainActivity.this).externalPictureVideo(video_path);
 * PhotoView:2.1.3
 * luban
 * 裁剪使用ucrop
-
-## 混淆配置 
-```
-#PictureSelector 2.0
--keep class com.luck.picture.lib.** { *; }
-
--dontwarn com.yalantis.ucrop**
--keep class com.yalantis.ucrop** { *; }
--keep interface com.yalantis.ucrop** { *; }
-   
- #rxjava
--dontwarn sun.misc.**
--keepclassmembers class rx.internal.util.unsafe.*ArrayQueue*Field* {
- long producerIndex;
- long consumerIndex;
-}
--keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueProducerNodeRef {
- rx.internal.util.atomic.LinkedQueueNode producerNode;
-}
--keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueConsumerNodeRef {
- rx.internal.util.atomic.LinkedQueueNode consumerNode;
-}
-
-#rxandroid
--dontwarn sun.misc.**
--keepclassmembers class rx.internal.util.unsafe.*ArrayQueue*Field* {
-   long producerIndex;
-   long consumerIndex;
-}
--keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueProducerNodeRef {
-    rx.internal.util.atomic.LinkedQueueNode producerNode;
-}
--keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueConsumerNodeRef {
-    rx.internal.util.atomic.LinkedQueueNode consumerNode;
-}
-
-#glide
--keep public class * implements com.bumptech.glide.module.GlideModule
--keep public class * extends com.bumptech.glide.AppGlideModule
--keep public enum com.bumptech.glide.load.resource.bitmap.ImageHeaderParser$** {
-  **[] $VALUES;
-  public *;
-}
-
-# for DexGuard only
--keepresourcexmlelements manifest/application/meta-data@value=GlideModule
-
-```
-## 打赏
-# ~如果您觉得好，对你有帮助，可以给我一点打赏当做鼓励，蚊子再小也是肉呀(*^__^*) 嘻嘻…… 
-![image](https://github.com/LuckSiege/PictureSelector/blob/master/image/apply.png)
-
-## 兼容性测试
-******腾讯优测-深度测试-通过率达到100%******
-
-![image](https://github.com/LuckSiege/PictureSelector/blob/master/image/test.png)
-
-## 演示效果
-
-![image](https://github.com/LuckSiege/PictureSelector/blob/master/image/1.jpg)
-![image](https://github.com/LuckSiege/PictureSelector/blob/master/image/2.jpg)
-![image](https://github.com/LuckSiege/PictureSelector/blob/master/image/3.jpg)
-![image](https://github.com/LuckSiege/PictureSelector/blob/master/image/4.jpg)
-![image](https://github.com/LuckSiege/PictureSelector/blob/master/image/white.jpg)
-![image](https://github.com/LuckSiege/PictureSelector/blob/master/image/blue.jpg)
-![image](https://github.com/LuckSiege/PictureSelector/blob/master/image/11.jpg)
-![image](https://github.com/LuckSiege/PictureSelector/blob/master/image/5.jpg)
-![image](https://github.com/LuckSiege/PictureSelector/blob/master/image/6.jpg)
-![image](https://github.com/LuckSiege/PictureSelector/blob/master/image/7.jpg)
-![image](https://github.com/LuckSiege/PictureSelector/blob/master/image/8.jpg)
-![image](https://github.com/LuckSiege/PictureSelector/blob/master/image/audio.jpg)
-![image](https://github.com/LuckSiege/PictureSelector/blob/master/image/9.jpg)
-![image](https://github.com/LuckSiege/PictureSelector/blob/master/image/10.jpg)
-
-
