@@ -9,7 +9,6 @@
 
 ## 目录
 -[演示效果](#演示效果)<br>
--[兼容性测试](#兼容性测试)<br>
 -[功能特点](#功能特点)<br>
 -[集成方式](#集成方式)<br>
 -[功能配置](#功能配置)<br>
@@ -18,6 +17,7 @@
 -[常用功能](#常用功能)<br>
 -[结果回调](#结果回调)<br>
 -[混淆配置](#混淆配置)<br>
+-[兼容性测试](#兼容性测试)<br>
 -[常见错误](#常见错误)<br>
 -[更新日志](#更新日志)<br>
 
@@ -39,11 +39,6 @@
 <img src="https://github.com/LuckSiege/PictureSelector/blob/master/image/9.jpg" width = "23%"/>
 <img src="https://github.com/LuckSiege/PictureSelector/blob/master/image/10.jpg" width = "23%"/>
 </div>
-
-## 兼容性测试
-******腾讯优测-深度测试-通过率达到100%******
-
-![image](https://github.com/LuckSiege/PictureSelector/blob/master/image/test.png)
 
 # 功能特点
 
@@ -349,6 +344,11 @@ PictureSelector.create(MainActivity.this).externalPictureVideo(video_path);
 -keepresourcexmlelements manifest/application/meta-data@value=GlideModule
 
 ```
+
+## 兼容性测试
+******腾讯优测-深度测试-通过率达到100%******
+
+![image](https://github.com/LuckSiege/PictureSelector/blob/master/image/test.png)
 
 ## 常见错误
 ```
