@@ -24,20 +24,20 @@
 
 ## 演示效果
 <div>
-<img src="https://github.com/LuckSiege/PictureSelector/blob/master/image/1.jpg" width = "25%"/>
-<img src="https://github.com/LuckSiege/PictureSelector/blob/master/image/2.jpg" width = "25%"/>
-<img src="https://github.com/LuckSiege/PictureSelector/blob/master/image/3.jpg" width = "25%"/>
-<img src="https://github.com/LuckSiege/PictureSelector/blob/master/image/4.jpg" width = "25%"/>
-<img src="https://github.com/LuckSiege/PictureSelector/blob/master/image/white.jpg" width = "25%"/>
-<img src="https://github.com/LuckSiege/PictureSelector/blob/master/image/blue.jpg" width = "25%"/>
-<img src="https://github.com/LuckSiege/PictureSelector/blob/master/image/11.jpg" width = "25%"/>
-<img src="https://github.com/LuckSiege/PictureSelector/blob/master/image/5.jpg" width = "25%"/>
-<img src="https://github.com/LuckSiege/PictureSelector/blob/master/image/6.jpg" width = "25%"/>
-<img src="https://github.com/LuckSiege/PictureSelector/blob/master/image/7.jpg" width = "25%"/>
-<img src="https://github.com/LuckSiege/PictureSelector/blob/master/image/8.jpg" width = "25%"/>
-<img src="https://github.com/LuckSiege/PictureSelector/blob/master/image/audio.jpg" width = "25%"/>
-<img src="https://github.com/LuckSiege/PictureSelector/blob/master/image/9.jpg" width = "25%"/>
-<img src="https://github.com/LuckSiege/PictureSelector/blob/master/image/10.jpg" width = "25%"/>
+<img src="https://github.com/LuckSiege/PictureSelector/blob/master/image/1.jpg" width = "23%"/>
+<img src="https://github.com/LuckSiege/PictureSelector/blob/master/image/2.jpg" width = "23%"/>
+<img src="https://github.com/LuckSiege/PictureSelector/blob/master/image/3.jpg" width = "23%"/>
+<img src="https://github.com/LuckSiege/PictureSelector/blob/master/image/4.jpg" width = "23%"/>
+<img src="https://github.com/LuckSiege/PictureSelector/blob/master/image/white.jpg" width = "23%"/>
+<img src="https://github.com/LuckSiege/PictureSelector/blob/master/image/blue.jpg" width = "23%"/>
+<img src="https://github.com/LuckSiege/PictureSelector/blob/master/image/11.jpg" width = "23%"/>
+<img src="https://github.com/LuckSiege/PictureSelector/blob/master/image/5.jpg" width = "23%"/>
+<img src="https://github.com/LuckSiege/PictureSelector/blob/master/image/6.jpg" width = "23%"/>
+<img src="https://github.com/LuckSiege/PictureSelector/blob/master/image/7.jpg" width = "23%"/>
+<img src="https://github.com/LuckSiege/PictureSelector/blob/master/image/8.jpg" width = "23%"/>
+<img src="https://github.com/LuckSiege/PictureSelector/blob/master/image/audio.jpg" width = "23%"/>
+<img src="https://github.com/LuckSiege/PictureSelector/blob/master/image/9.jpg" width = "23%"/>
+<img src="https://github.com/LuckSiege/PictureSelector/blob/master/image/10.jpg" width = "23%"/>
 </div>
 
 ## 兼容性测试
